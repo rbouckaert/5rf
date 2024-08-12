@@ -74,7 +74,7 @@ name="alignment">
             <parameter id="gammaShape.s:x" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
             <parameter id="freqParameter.s:x" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             
-            <!-- for 5rf: add freqParameter for each of the categories -->
+            <!-- for 5rf: add a freqParameter for each of the rate categories; 1 is slowest, then increasing average rate -->
             <parameter id="freqParameter1.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter2.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter3.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
@@ -97,7 +97,7 @@ name="alignment">
                     <Uniform id="Uniform.10" name="distr"/>
                 </prior>
                 
-				<!-- for 5rf: add a prior for each of the freqParameters added -->
+				<!-- for 5rf: add a prior for each of the freqParameters added above -->
  		        <plate var="n" range="1,2,3,4,5">
 	                <prior id="FrequenciesPrior$(n).s:x" name="distribution" x="@freqParameter$(n).s:dna">
     	                <distr spec="distribution.Dirichlet" alpha="4.0 4.0 4.0 4.0"/>
