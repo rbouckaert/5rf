@@ -254,7 +254,8 @@ name="alignment">
             </distribution>
             <distribution id="likelihood" spec="beast.base.inference.CompoundDistribution" useThreads="true">
 
-		    	<!-- for 5rf: change the spec of the treelikliehood to  spec="fiverf.likelihood.TreeLikelihoodF"-->
+		    	<!-- for 5rf: change the spec of the treelikliehood to  spec="fiverf.likelihood.TreeLikelihoodF"; note, we are 
+		          spelling "5" our since java does not all a an identifier to begin with a number -->
                 <distribution id="treeLikelihood.x" spec="fiverf.likelihood.TreeLikelihoodF" data="@x" tree="@Tree.t:x">
                 
 		            <!-- for 5rf: add Frequencies linking to the freqParameters for each of the categories -->
