@@ -1,0 +1,230 @@
+<project basedir="." default="package" name="BUILD_5rf">
+	<description>
+	    Build 5rf. 
+            Also used by Hudson 5rf project. 
+	    JUnit test is available for this build.
+	    $Id: build_5rf.xml $
+	</description>
+
+	<!-- set global properties for this build -->
+	<property name="5rfdir" location="../5rf/"/>
+	<property name="src5rf" location="${5rfdir}/src" />
+	<property name="build5rf" location="${5rfdir}/build" />
+	<property name="lib5rf" location="${5rfdir}/lib" />
+	<property name="release_dir" value="${5rfdir}/release" />
+	<property name="dist5rf" location="${build5rf}/dist" />
+	<property name="beast2path" location="../beast2" />
+	<property name="libBeast2" location="${beast2path}/lib" />
+	<property name="srcBeast2" location="${beast2path}/src" />
+	<property name="beast2classpath" location="${beast2path}/build" />
+	<property name="packageDir" value="${release_dir}/add-on" />
+	<property name="beastapp2path" location="../BeastFX" />
+	<property name="beastapp2classpath" location="${beastapp2path}/build" />
+	<property name="asmclasspath" location="../asm/build" />
+	
+
+
+    <import file="${beast2path}/build.xml" />
+
+	<property name="main_class_BEAST" value="beast.app.BeastMCMC" />
+	<property name="report" value="${build5rf}/junitreport"/>
+
+	<path id="classpath">
+        <pathelement path="${build5rf}"/>
+	    <fileset dir="${libBeast2}" includes="antlr-runtime-4.10.1.jar"/>	
+	    <fileset dir="${libBeast2}" includes="commons-math3-3.6.1.jar"/>
+	    <fileset dir="${libBeast2}" includes="fest.jar"/>
+        <fileset dir="${libBeast2}" includes="beagle.jar"/>
+        <fileset dir="${libBeast2}" includes="jam.jar"/>
+        <fileset dir="${libBeast2}" includes="colt.jar"/>
+        <pathelement path="${beast2classpath}"/>
+        <pathelement path="${beastapp2classpath}"/>
+        <pathelement path="${asmclasspath}"/>
+         <fileset dir="${libBeast2}/junit" includes="junit-platform-console-standalone-1.8.2.jar"/>
+ 	</path>
+
+	<!-- start -->
+	<target name="init5rf">
+		<echo message="${ant.project.name}: ${ant.file}" />
+
+	    <available file="${5rfdir}/version.xml" property="versionAvailable"/>
+    	<fail unless="versionAvailable">
+	      ** Required file version.xml does not exist. **
+	    </fail>
+
+    	<!-- Read package name and version from xml file -->
+	    <xmlproperty file="${5rfdir}/version.xml" prefix="fromVersionFile" />
+        <property name="projName" value="${fromVersionFile.package(name)}" />
+    	<property name="5rfversion" value="${fromVersionFile.package(version)}" />
+	</target>
+
+	<target name="clean5rf">
+    	<delete dir="${build5rf}" />
+	</target>
+
+	<!-- clean previous build, and then compile Java source code, and Juint test -->
+	<target name="build_all_5rf" depends="clean5rf,compile-all5rf,junit5rf"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+	<!-- clean previous build, compile Java source code, and Junit test, and make the beast.jar and beauti.jar -->
+	<target name="build_jar_all_5rf" depends="clean5rf,compile-all5rf,junit5rf,dist_all_5rf"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+
+	<!-- No JUnit Test, clean previous build, compile Java source code, and make the 5rf.jar and beauti.jar -->
+	<target name="build_jar_all_5rf_NoJUnitTest" depends="clean5rf,compile-all5rf,dist_all_5rf"
+        description="Clean and Build all run-time stuff">
+	</target>
+
+	<!-- compile Java source code -->
+	<target name="compile-all5rf" depends="init5rf,compile-all">
+
+
+	    <!-- Capture the path as a delimited property using the refid attribute -->
+	    <property name="myclasspath" refid="classpath"/>
+	    <!-- Emit the property to the ant console -->
+	    <echo message="Classpath = ${myclasspath}"/>
+
+		<mkdir dir="${build5rf}" />
+
+		<!-- Compile the java code from ${src5rf} into ${build5rf} /bin -->
+		<javac srcdir="${src5rf}" destdir="${build5rf}" classpathref="classpath" 
+		       fork="true"
+		       memoryinitialsize="256m"
+		       memorymaximumsize="256m">
+			<include name="fiverf/**/**" />
+			<!-- compile JUnit test classes -->
+			<include name="test/fiverf/**" />
+		</javac>
+		<echo message="Successfully compiled." />
+	</target>
+
+	<!-- make the beast.jar and beauti.jar -->
+	<target name="dist_all_5rf" depends="compile-all5rf" description="create 5rf jar">
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist5rf}" />
+
+		<jar jarfile="${dist5rf}/5rf.src.jar">
+			<fileset dir="${src5rf}">
+				<include name="**/*.java" />
+				<include name="**/*.css" />
+			</fileset>
+        </jar>
+		<jar jarfile="${dist5rf}/5rf.package.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+			</manifest>
+			<fileset dir="${build5rf}">
+				<include name="**/*.class" />
+				<include name="**/*.class" />
+				<include name="**/*.css" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- run beast.jar -->
+	<target name="run_5rf">
+		<java jar="${dist5rf}/5rf.jar" fork="true" />
+	</target>
+
+	
+	<!-- JUnit test -->
+	<target name="junit5rf">
+		<mkdir dir="${report}" />
+		<junit printsummary="yes"> <!--showoutput='yes'-->
+			<classpath>
+				<path refid="classpath" />
+				<path location="${build5rf}" />
+			</classpath>
+
+			<formatter type="xml" />
+
+			<batchtest fork="yes" todir="${report}">
+				<fileset dir="${src5rf}">
+                    <include name="test/**/*Test.java"/>                                         
+				</fileset>
+				<fileset dir="${srcBeast2}">
+                    <include name="test/beast/integration/**/*Test.java"/>                                         
+                    <exclude name="test/beast/integration/**/ResumeTest.java"/>                                         
+				</fileset>
+			</batchtest>
+		</junit>
+		<echo message="JUnit test finished." />
+	</target>
+    
+    <target name="junitreport">
+		<junitreport todir="${report}">
+			<fileset dir="${report}" includes="*.xml"/>
+			<report format="frames" todir="${report}"/>
+		</junitreport>
+		<echo message="JUnit test report finished." />
+	</target>
+
+	<target name="addon" depends="package"/>
+
+	<target name="package"
+	        depends="build_jar_all_5rf_NoJUnitTest"
+	        description="release BEAST 2 add-on version of 5rf">
+
+		<delete dir="${packageDir}" />
+		<!-- Create the release directory -->
+		<mkdir dir="${packageDir}" />
+		<mkdir dir="${packageDir}/lib" />
+		<mkdir dir="${packageDir}/examples" />
+		<mkdir dir="${packageDir}/fxtemplates" />
+
+		<copy todir="${packageDir}">
+			<fileset file="version.xml"/>
+		</copy>
+		<copy todir="${packageDir}/examples">
+			<fileset dir="examples" />
+		</copy>
+		<copy todir="${packageDir}/lib">
+			<fileset dir="${dist5rf}" includes="5rf.package.jar" />
+		</copy>
+		<copy todir="${packageDir}">
+			<fileset dir="${dist5rf}" includes="5rf.src.jar" />
+		</copy>
+		<!-->
+		<copy todir="${packageDir}/fxtemplates">
+			<fileset file="fxtemplates/5rf.xml" />
+		</copy>
+		-->
+		<jar jarfile="${dist5rf}/5rf.package.v${5rfversion}.zip">
+			<fileset dir="${packageDir}">
+				<include name="**/*" />
+			</fileset>
+        </jar>
+		<echo message="Add-on version v${5rfversion} release is finished." />
+	</target>
+
+
+
+	<condition property="isWindows"><os family="windows" /></condition>
+	<condition property="isLinux"><and><os family="unix"/><not><os family="mac"/></not></and></condition>
+	<condition property="isMac"><os family="mac" /></condition>
+
+	<target name="installLinux" depends="package" if="isLinux">
+	        <mkdir dir="${user.home}/.beast/2.7/${projName}"/>
+			<unzip src="${dist5rf}/5rf.package.v${5rfversion}.zip" dest="${user.home}/.beast/2.7/${projName}"/>
+	</target>
+
+	<target name="installMac" depends="package" if="isMac">
+	        <mkdir dir="${user.home}/.beast/2.7/${projName}"/>
+			<unzip src="${dist5rf}/5rf.package.v${5rfversion}.zip" dest="${user.home}/Library/Application Support/BEAST/2.7/${projName}"/>
+	</target>
+
+	<target name="installWindows" depends="package" if="isWindows">
+	        <mkdir dir="${user.home}/BEAST/2.7/${projName}"/>
+			<unzip src="${dist5rf}/5rf.package.v${5rfversion}.zip" dest="${user.home}/BEAST/2.7/${projName}"/>
+	</target>
+
+	<target name="install" depends="installWindows,installMac,installLinux">
+	</target>
+
+
+
+
+</project>
