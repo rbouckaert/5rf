@@ -44,4 +44,4 @@ Click OK and now 5rf should be listed in the package manager (as in the first di
   
 ## Usage
 
-There is no BEAUti support yet, so you have to edit the XML by hand: see [annotated example](https://github.com/rbouckaert/5rf/raw/master/examples/test5rf.xml) file for details.
+There is no BEAUti support yet, so you have to edit the XML by hand: see [annotated example](https://github.com/rbouckaert/5rf/blob/main/examples/test5rf.xml) file for details.

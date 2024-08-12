@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.alignment:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="" version="2.6">
+
+<!-- for the 5rf model: set up an analysis in BEAUti and edit the XML as per comments with "for 5rf" below -->
+
     <data
 id="x"
 spec="Alignment"
@@ -39,6 +42,7 @@ name="alignment">
         <sequence id="seq_Ursus_americanus" spec="Sequence" taxon="Ursus_americanus" totalcount="4" value="GCACACCCCTTTCAAATAGGTCTTCAAGATGCAACTTCTCCTATCATAGAAGAACTCCTACATTTTCATGACCATACATTAATAATTGTATTCCTAATTAGCTCCTTAGTTCTCTATATTATTTCAACTATATTAACTACCAAATTAACACACACAAACACAATGGATGCACAAGAAGTAGAGACGGTGTGAACCATCCTGCCAGCTATAATCCTAATTCTAATCGCACTCCCATCGCTACGGATTCTCTATATAATGGATGAAATCAATAACCCCTCACTGACCGTAAAAACCATGGGCCATCAATGATATTGAAGTTACGAGTACACAGATTATGAAGATCTAAATTTTGACTCCTACATGACTCCAACACAAGAACTAAAGCCTGGAGAACTGCGGTTATTAGAAGTGGACAATCGAGTAGTACTGCCCATAGAAATAACGATCCGTATGCTAATCTCATCAGAAGATGTCTTGCACTCATGAGCTGTACCATCCCTAGGGTTAAAAACCGATGCAATCCCAGGACGACTAAATCAAACAACTCTCATAGCCATGCGACCGGGACTATATTATGGCCAATGCTCAGAAATTTGTGGCTCCAACCACAGCTTTATGCCTATTGTCCTCGAGCTAGTCCCACTATCCTACTTTGAAAAATGGTCTGCCTCAATACTAATGACCAACATCCGAAAAACCCACCCATTAGCTAAAATCATCAACAACTCACTTATTGATCTCCCAACACCATCAAATATCTCAGCATGATGAAACTTCGGATCTCTCCTCGGAGTATGTTTAGTACTACAAATTCTAACGGGCCTATTTCTAGCCATACACTACACATCAGATACAACTACAGCCTTTTCATCAATCACCCATATTTGCCGAGATGTTCACTACGGATGAATTATCCGATACATACATGCTAACGGAGCTTCCATGTTCTTTATCTGCCTGTTCATGCACGTAGGACGGGGTCTGTACTATGGCTCATACCTACTCTCAGAAACATGAAACATTGGCATTATCCTCCTATTTACAGTTATAGCCACCGCATTCATAGGATATGTCCTGCCCTGAGGCCAAATATCCTTCTGAGGAGCAACTGTTATCACCAACCTCCTATCAGCCATCCCCTATATTGGAACAGACCTAGTAGAATGGATCTGAGGGGGCTTTTCTGTGAATAAGGCAACTCTGACACGATTCTTTGCCTTCCACTTTATTCTTCCATTCATCATCTTGACACTAGCAGCAGTCCACCTATTATTCCTACACGAAACAGGATCTAATAACCCCTCTGGAATCCCATCTGACTCAGACAAAATCCCATTTCATCCATATTATACAATTAAAGACGCCCTAGGCGCCCTACTTTTCATCCTAGCCCTAACAACTCTAGTCCTATTCTCGCCTGACCTACTAGGAGATCCCGATAACTACACCCCCGCAAACCCACTGAGCACCCCACCCCACATCAAACCTGAATGATATTTTCTATTTGCCTACGCTATTCTACGGTCCATCCCCAACAAACTAGGAGGAGTGCTAGCACTAATTTTCTCTATCCTAATCCTAGCTATTATCCCCCTTCTACACACATCCAAGCAACGAGGAATAATGTTCCGACCCCTAAGCCAATGCCTATTCTGACTTCTAGTAGCAGACCTACTAACACTAACATGAATCGGAGGGCAACCAGTAGAACACCCCTTTATCATTATCGGCCAGTTGGCCTCTATCCTCTACTTCACAATCCTCCTAGTGCTCATGCCTATCGCTGGGATCATTGAAAATAACCTCTCAAAA"/>
         <sequence id="seq_Varecia_variegata" spec="Sequence" taxon="Varecia_variegata" totalcount="4" value="GCTCATCCAGTCCAACTAGGATTTCAAGACGCCGCTTCTCCTATTATAGAAGAACTCCTATATTTTCACGACCACACCCTAATAATTATATTCCTAATTAGCTCTTTAGTCCTATATATTATTTCCCTAATACTCACTACTAAACTCACACATACAAGCACTATAGATGCTCAAGAAGTAGAAACAGTATGAACAATTTTACCCGCAGCAATTCTTATTCTTATTGCCCTCCCCTCACTACGTATCCTATACATGATGGACGAAATTACTTCTCCTTCCCTTACCCTTAAAACCATAGGTCACCAATGATATTGAAGTTATGAGTATACGGATTACGAAAATTTATGCTTTGACTCATATATAACCCCCTGCTCAGACCTAAAACCCGGAGAACTTCGCTTACTTGAAGTAGATAATCGAGTCGTTCTACCCACAGAACTGTCAATCCGAACGCTAATCTCTTCAGAAGATGTATTACACTCATGAACCGTACCCTCCTTAGGTGTAAAAACAGATGCTATCCCAGGACGCTTAAATCAGGCTACACTAATAGCCTCTCGCCCAGGTGTCTACTACGGCCAATGTTCAGAAATCTGTGGTGCAAATCACAGCTTTATACCAATCGTTCTAGAACTAATTCCCCTAAAACACTTCGAAGAATGACTATTATTCACATTAATGACTAACACTCGAAAGAACCACCCTCTAATAAAAATTATAAACAACTCACTCATCGATCTCCCAGCACCATCCAATATCTCCTCATGATGAAATTTCGGCTCCCTCTTAGGAGCCTGCCTTACCTTACAAGTTATCACAGGACTATTCCTAGCAATACACTACACAGCAGATACAACAACCGCATTTTCCTCCATTACCCATATTTGCCGCGACGTAAACTACGGCTGAATCATCCGCTATCTCCATGCTAACGGAGCATCTATATTCTTCTTATGCTTATTTATCCACATCGGTCGAGGGTTATACTATGGGTCATTCACTCTACTAGAAACCTGAAACATCGGTATTATCCTACTTTTCACAGTAATAGCTACAGCCTTCATAGGATATGTCCTTCCATGAGGACAAATATCATTCTGAGGCGCTACAGTAATTACAAACCTTTTATCAGCAATCCCATATATTGGTATTAACCTAGTAGAGTGAATCTGAGGAGGGTTTTCCGTCGACAAAGCCACCTTGACCCGATTCTTCGCCTTTCACTTTATCCTGCCCTTTATTATTATAGCATTAGTTATAGTTCACCTTCTATTTCTACACGAAACAGGATCCAACAACCCACTAGGCATTCCATCAAACTCCGACAAAATTCCATTCCACCCCTATTACACTATCAAAGACTTTTTAGGACTCCTTCTCCTCATTCTCCTAACTGTAACCCTAGTCCTATTCTCCCCCGACCTACTGACTGACCCCGACAACTACATACCAGCTAATCCCCTAAATACACCACCACACATCAAGCCAGAATGATATTTCCTATTCGCCTACGCAATCCTACGATCTATTCCTAATAAACTAGGAGGGGTCCTAGCCTTATTCTTCTCAATCCTAATTTTAGCTATTATCCCCCTACTACACACAGCCAAACAACAAAGCATAATTTTCCGACCACTTAGCCAATACCTATTTTGAATTCTAATTGCCAACCTATTTATCCTCACATGAATCGGAGGCCAACCCGTCGAACATCCCTATACTATTATCGGCCAAACAGCATCCATCCTTTACTTCTCCCTTATCCTTATTATCATACCCCTAGTTAACCTTATTGAAAATAAAATACTCAAA"/>
     </data>
+    
     <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
     <map name="Exponential" >beast.base.inference.distribution.Exponential</map>
     <map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
@@ -49,6 +53,7 @@ name="alignment">
     <map name="prior" >beast.base.inference.distribution.Prior</map>
     <map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
     <map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+    
     <run id="mcmc" spec="MCMC" chainLength="3000000">
         <state id="state" spec="State" storeEvery="5000">
             <tree id="Tree.t:x" spec="beast.base.evolution.tree.Tree" name="stateNode">
@@ -68,12 +73,15 @@ name="alignment">
             <parameter id="proportionInvariant.s:x" spec="parameter.RealParameter" lower="0.0" name="stateNode" upper="1.0">0.1</parameter>
             <parameter id="gammaShape.s:x" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
             <parameter id="freqParameter.s:x" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
+            
+            <!-- for 5rf: add freqParameter for each of the categories -->
             <parameter id="freqParameter1.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter2.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter3.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter4.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
             <parameter id="freqParameter5.s:dna" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
         </state>
+        
         <init id="RandomTree.t:x" spec="beast.base.evolution.tree.coalescent.RandomTree" estimate="false" initial="@Tree.t:x" taxa="@x">
             <populationModel id="ConstantPopulation0.t:x" spec="ConstantPopulation">
                 <parameter id="randomPopSize.t:x" spec="parameter.RealParameter" name="popSize">1.0</parameter>
@@ -88,6 +96,14 @@ name="alignment">
                 <prior id="FrequenciesPrior.s:x" name="distribution" x="@freqParameter.s:x">
                     <Uniform id="Uniform.10" name="distr"/>
                 </prior>
+                
+				<!-- for 5rf: add a prior for each of the freqParameters added -->
+ 		        <plate var="n" range="1,2,3,4,5">
+	                <prior id="FrequenciesPrior$(n).s:x" name="distribution" x="@freqParameter$(n).s:dna">
+    	                <distr spec="distribution.Dirichlet" alpha="4.0 4.0 4.0 4.0"/>
+        	        </prior>
+		        </plate>
+                
                 <prior id="GammaShapePrior.s:x" name="distribution" x="@gammaShape.s:x">
                     <Exponential id="Exponential.1" name="distr">
                         <parameter id="RealParameter.16" spec="parameter.RealParameter" estimate="false" name="mean">1.0</parameter>
@@ -237,12 +253,17 @@ name="alignment">
                 </distribution>
             </distribution>
             <distribution id="likelihood" spec="beast.base.inference.CompoundDistribution" useThreads="true">
+
+		    	<!-- for 5rf: change the spec of the treelikliehood to  spec="fiverf.likelihood.TreeLikelihoodF"-->
                 <distribution id="treeLikelihood.x" spec="fiverf.likelihood.TreeLikelihoodF" data="@x" tree="@Tree.t:x">
+                
+		            <!-- for 5rf: add Frequencies linking to the freqParameters for each of the categories -->
 	                <f id="estimatedFreqs1.s:dna" spec="Frequencies" frequencies="@freqParameter1.s:dna"/>
 	                <f id="estimatedFreqs2.s:dna" spec="Frequencies" frequencies="@freqParameter2.s:dna"/>
 	                <f id="estimatedFreqs3.s:dna" spec="Frequencies" frequencies="@freqParameter3.s:dna"/>
 	                <f id="estimatedFreqs4.s:dna" spec="Frequencies" frequencies="@freqParameter4.s:dna"/>
 	                <f id="estimatedFreqs5.s:dna" spec="Frequencies" frequencies="@freqParameter5.s:dna"/>
+	                
                     <siteModel id="SiteModel.s:x" spec="SiteModel" gammaCategoryCount="4" proportionInvariant="@proportionInvariant.s:x" shape="@gammaShape.s:x">
                         <parameter id="mutationRate.s:x" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
                         <substModel id="gtr.s:x" spec="GTR" rateAC="@rateAC.s:x" rateAG="@rateAG.s:x" rateAT="@rateAT.s:x" rateCG="@rateCG.s:x" rateGT="@rateGT.s:x">
@@ -285,11 +306,14 @@ name="alignment">
         <operator id="FrequenciesExchanger.s:x" spec="DeltaExchangeOperator" delta="0.01" weight="0.1">
             <parameter idref="freqParameter.s:x"/>
         </operator>
+        
+		<!-- for 5rf: add an operator for each of the categories for each of the freqParameters added -->
         <plate var="n" range="1,2,3,4,5">
           <operator id="FrequenciesExchanger$(n).s:dna" spec="DeltaExchangeOperator" delta="0.01" weight="0.1">
             <parameter idref="freqParameter$(n).s:dna"/>
           </operator>
     	</plate>
+    	
         <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="10000" model="@posterior" sanitiseHeaders="true" sort="smart">
             <log idref="posterior"/>
             <log idref="likelihood"/>
@@ -316,9 +340,12 @@ name="alignment">
             <log idref="proportionInvariant.s:x"/>
             <log idref="gammaShape.s:x"/>
             <log idref="freqParameter.s:x"/>
+            
+			<!-- for 5rf: add a logger for each of the freqParameters added -->
         	<plate var="n" range="1,2,3,4,5">
             	<log idref="freqParameter$(n).s:dna"/>
 	    	</plate>                
+	    	
         </logger>
         <logger id="screenlog" spec="Logger" logEvery="10000">
             <log idref="posterior"/>
