@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.alignment:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="" version="2.6">
 
-<!-- for the 5rf model: set up an analysis in BEAUti and edit the XML as per comments with "for 5rf" below -->
+<!-- for the 5rf model: set up an analysis in BEAUti and edit the XML as per comments with "for 5rf" below.
+There are 6 pleaces in this xml to modify: 1. Defining the extra parameters. 2. Setting their priors. 3. Changing the spec of the treelikelihood. 4. Linking the frequency parameters to each rate category. 5. Adding an operator for each of these new parameters. 6. Logging the values of these parameters. 	
+-->
 
     <data
 id="x"
