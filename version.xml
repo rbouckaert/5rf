@@ -4,6 +4,8 @@
 
     <service type="beast.base.core.BEASTInterface">
         <provider classname="fiverf.likelihood.TreeLikelihoodF"/>        
+        <provider classname="fiverf.seqgen.CoverageTestXMLGeneratorF"/>
+        <provider classname="fiverf.seqgen.SequenceSimulatorF"/>
     </service>
     
     <map from="beastbooster.likelihood.TreeLikelihoodF" to="fiverf.likelihood.TreeLikelihoodF"/>
