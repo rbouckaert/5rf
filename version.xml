@@ -6,6 +6,7 @@
         <provider classname="fiverf.likelihood.TreeLikelihoodF"/>        
         <provider classname="fiverf.seqgen.CoverageTestXMLGeneratorF"/>
         <provider classname="fiverf.seqgen.SequenceSimulatorF"/>
+        <provider classname="fiverf.substitutionmodel.MixtureSubstitutionModel"/>
     </service>
     
     <map from="beastbooster.likelihood.TreeLikelihoodF" to="fiverf.likelihood.TreeLikelihoodF"/>

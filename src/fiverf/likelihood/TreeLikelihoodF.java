@@ -189,14 +189,34 @@ public class TreeLikelihoodF extends TreeLikelihood {
 	
 	@Override
 	protected boolean requiresRecalculation() {
-		boolean isDirty = super.requiresRecalculation();
+        hasDirt = Tree.IS_CLEAN;
+
+        if (dataInput.get().isDirtyCalculation()) {
+            hasDirt = Tree.IS_FILTHY;
+            return true;
+        }
+        if (m_siteModel.isDirtyCalculation()) {
+            hasDirt = Tree.IS_DIRTY;
+            return true;
+        }
+        if (branchRateModel != null && branchRateModel.isDirtyCalculation()) {
+            //m_nHasDirt = Tree.IS_DIRTY;
+            return true;
+        }
+        if (rootFrequenciesInput.get() != null && rootFrequenciesInput.get().isDirtyCalculation()) {
+            hasDirt = Tree.IS_DIRTY;
+            return true;
+        }
 		
 		for (Frequencies freqs : freqList) {
 			if (freqs.isDirtyCalculation()) {
 	            hasDirt = Tree.IS_DIRTY;
+	            return true;
 			}
 		}
 		
-		return isDirty || hasDirt != Tree.IS_CLEAN;
+        return treeInput.get().somethingIsDirty();
+//		return isDirty || hasDirt != Tree.IS_CLEAN;
+//		boolean isDirty = super.requiresRecalculation();
 	}
 }
